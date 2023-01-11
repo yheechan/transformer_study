@@ -12,6 +12,8 @@ def train(
 	tgt_vocab,
 	n_epochs,
 	lr_schedular=None,
+	writer=None,
+	title=None,
 ):
 
 	best_accuracy = 0
