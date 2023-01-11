@@ -270,11 +270,11 @@ def main(config, model_weight=None, opt_weight=None):
 
 	end_time = (timeit.default_timer() - start_time) / 60.0
 
-	mu.saveModel(overall_title, title, model)
+	# mu.saveModel(overall_title, title, model)
 	# mu.graphModel(train_dataloader, model, writer, device)
 
-	model = mu.getModel(overall_title, title)
-	print(model)
+	# model = mu.getModel(overall_title, title)
+	# print(model)
 
 
 if __name__ == '__main__':
