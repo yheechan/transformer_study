@@ -9,7 +9,13 @@ from data_loader import DataLoader
 import data_loader
 import trainer
 
+from torch.utils.tensorboard import SummaryWriter
+from datetime import datetime
+
+import timeit
+
 from models.transformer import Transformer
+import model_util as mu
 
 def define_argparser():
 	p = argparse.ArgumentParser()
@@ -208,7 +214,7 @@ def main(config, model_weight=None, opt_weight=None):
 	
 	optimizer = get_optimizer(model, config)
 
-	if opt_weight is not None and config_use_adam:
+	if opt_weight is not None and config.use_adam:
 		optimizer.load_state_dict(opt_weight)
 	
 	lr_schedular = None
@@ -239,6 +245,15 @@ def main(config, model_weight=None, opt_weight=None):
 		if cnt == 4: break
 	'''
 
+	overall_title = 'version1'
+
+	timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+	writer = SummaryWriter('../tensorboard/'+overall_title+'/tests')
+
+	title = overall_title + '_01'
+
+	start_time = timeit.default_timer()
+
 	trainer.train(
 		model,
 		crit,
@@ -249,7 +264,17 @@ def main(config, model_weight=None, opt_weight=None):
 		tgt_vocab=loader.tgt.vocab,
 		n_epochs=config.n_epochs,
 		lr_schedular=lr_schedular,
+		writer=writer,
+		title=title,
 	)
+
+	end_time = (timeit.default_timer() - start_time) / 60.0
+
+	mu.saveModel(overall_title, title, model)
+	# mu.graphModel(train_dataloader, model, writer, device)
+
+	model = mu.getModel(overall_title, title)
+	print(model)
 
 
 if __name__ == '__main__':
