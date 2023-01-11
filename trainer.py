@@ -87,7 +87,7 @@ def train(
 
 		# After the completion of each training epoch,
 		# measure the model's performance on validation set.
-		val_loss, val_acc = evalute(
+		val_loss, val_acc = evaluate(
 			model,
 			crit,
 			valid_loader,
@@ -168,18 +168,13 @@ def evaluate(
 			# backward_target = loss.div(y.size(0)).div(engine.config.iteration_per_update)
 			backward_target = loss.div(y.size(0)).div(32)
 
-			# backward_target.backward(retain_graph=True)
-			backward_target.backward()
-			optimizer.step()
-
 			word_cnt = int(tgt[1].sum())
 			loss = float(loss / word_cnt)
 			tot_val_loss.append(loss)
 
-			print(batch_idx, loss, np.mean(tot_train_acc))
 
 		# Calculate the average loss over the entire validation data
-		val_loss = np.mean(tot_train_loss)
-		val_acc = np.mean(tot_train_acc)
+		val_loss = np.mean(tot_val_loss)
+		val_acc = np.mean(tot_val_acc)
 
 		return val_loss, val_acc

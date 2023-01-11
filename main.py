@@ -248,7 +248,7 @@ def main(config, model_weight=None, opt_weight=None):
 	overall_title = 'version1'
 
 	timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-	writer = SummaryWriter('../tensorboard/'+overall_title+'/tests')
+	writer = SummaryWriter('./tensorboard/'+overall_title+'/tests')
 
 	title = overall_title + '_01'
 
