@@ -105,6 +105,7 @@ def define_argparser():
 
 	return config
 
+
 def get_model(input_size, output_size, config):
 	if config.use_transformer:
 		model = Transformer(
@@ -129,6 +130,7 @@ def get_model(input_size, output_size, config):
 	
 	return model
 
+
 def get_crit(output_size, pad_index):
 	# Default weight for loss equals to 1, but we don't need to get loss for PAD token
 	# Thus, set a weight for PAD to zero.
@@ -145,6 +147,7 @@ def get_crit(output_size, pad_index):
 
 	return crit
 
+
 def get_optimizer(model, config):
 	if config.use_adam:
 		if config.use_transformer:
@@ -156,6 +159,7 @@ def get_optimizer(model, config):
 		optimizer = optim.Adam(model.parameters(), lr=config.lr, betas=(.9, .98))
 	
 	return optimizer
+
 
 def main(config, model_weight=None, opt_weight=None):
 	def print_config(config):
