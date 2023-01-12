@@ -18,6 +18,7 @@ class DataLoader():
 		self,
 		train_fn=None,
 		valid_fn=None,
+		test_fn=None,
 		exts=None,
 		batch_size=64,
 		device='cpu',
@@ -26,7 +27,7 @@ class DataLoader():
 		fix_length=None,
 		use_bos=True,
 		use_eos=True,
-		shuffle=True,
+		shuffle=False,
 		dsl=False
 	):
 		super(DataLoader, self).__init__()
@@ -68,7 +69,7 @@ class DataLoader():
 		)
 
 
-		if train_fn is not None and valid_fn is not None and exts is not None:
+		if train_fn is not None and valid_fn is not None and test_fn is not None and exts is not None:
 			train = TranslationDataset(
 				path=train_fn,
 				exts=exts,
@@ -81,6 +82,13 @@ class DataLoader():
 				exts=exts,
 				fields=[('src', self.src), ('tgt', self.tgt)],
 				max_length=max_length,
+			)
+
+			test = TranslationDataset(
+				path=test_fn,
+				exts=exts,
+				fields=[('src', self.src), ('tgt', self.tgt)],
+				max_length=max_length
 			)
 
 			# torchtext.legacy BucketIterator
@@ -99,7 +107,16 @@ class DataLoader():
 				dataset=valid,
 				batch_size=batch_size,
 				device='cuda:%d' % device if device >= 0 else 'cpu',
-				shuffle=False,
+				shuffle=shuffle,
+				sort_key=lambda x: len(x.tgt) + (max_length * len(x.src)),
+				sort_within_batch=True,
+			)
+
+			self.test_iter = data.BucketIterator(
+				dataset=test,
+				batch_size=batch_size,
+				device='cuda:%d' % device if device >= 0 else 'cpu',
+				shuffle=shuffle,
 				sort_key=lambda x: len(x.tgt) + (max_length * len(x.src)),
 				sort_within_batch=True,
 			)
