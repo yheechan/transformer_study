@@ -245,12 +245,12 @@ def main(config, model_weight=None, opt_weight=None):
 		if cnt == 4: break
 	'''
 
-	overall_title = 'version1'
+	overall_title = 'server1'
 
 	timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
 	writer = SummaryWriter('./tensorboard/'+overall_title+'/tests')
 
-	title = overall_title + '_01'
+	title = overall_title + '_04'
 
 	start_time = timeit.default_timer()
 
@@ -269,6 +269,8 @@ def main(config, model_weight=None, opt_weight=None):
 	)
 
 	end_time = (timeit.default_timer() - start_time) / 60.0
+
+	print('total taken time: ', end_time)
 
 	# mu.saveModel(overall_title, title, model)
 	# mu.graphModel(train_dataloader, model, writer, device)
