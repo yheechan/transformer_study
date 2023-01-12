@@ -1,0 +1,44 @@
+using data from torchtext.legacy
+{   'batch_size': 32,
+    'dropout': 0.0,
+    'hidden_size': 64,
+    'lang': 'enko',
+    'lr': 0.0003,
+    'max_length': 20,
+    'n_epochs': 10,
+    'n_layers': 4,
+    'n_splits': 8,
+    'research_num': '01',
+    'research_subject': 'merged_update',
+    'test': 'corpus.shuf.test.tok.bpe',
+    'train': 'corpus.shuf.train.tok.bpe',
+    'valid': 'corpus.shuf.valid.tok.bpe'}
+
+input_size:  9063
+output_size:  13062
+
+ Loss function: Negative Log-Likelihood with log-probability (NLLLoss)
+
+Using device number: 0
+Optimizer: Adam
+Start training...
+ Epoch  |  Train Loss  | Train Acc  | Val Loss | Val Acc | Elapsed
+--------------------------------------------------------------------------------
+   1    |   8.902938   | 12.668046  | 8.538445 | 15.62  |  1.44 
+   2    |   8.192201   | 15.973299  | 8.000121 | 17.71  |  1.43 
+   3    |   7.650634   | 18.801706  | 7.506372 | 19.17  |  1.44 
+   4    |   7.172164   | 21.103714  | 7.149547 | 20.21  |  1.40 
+   5    |   6.782769   | 22.962987  | 6.917566 | 22.08  |  1.43 
+   6    |   6.459697   | 24.850985  | 6.749620 | 23.12  |  1.43 
+   7    |   6.171491   | 26.719235  | 6.618242 | 25.00  |  1.44 
+   8    |   5.903482   | 28.500230  | 6.492228 | 26.04  |  1.43 
+   9    |   5.651618   | 30.381765  | 6.349724 | 28.12  |  1.44 
+  10    |   5.414355   | 32.117876  | 6.199367 | 29.58  |  1.43 
+
+
+Training complete! Best accuracy: 29.58%.
+total taken time:  0.23836296111670283
+
+Using device number: 0
+test loss:  6.774910926818848
+test acc:  27.916666666666668
