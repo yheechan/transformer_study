@@ -1,0 +1,298 @@
+using data from torchtext.legacy
+{   'batch_size': 32,
+    'dropout': 0.1,
+    'hidden_size': 32,
+    'lang': 'enko',
+    'lr': 0.003,
+    'max_length': 50,
+    'n_epochs': 50,
+    'n_layers': 4,
+    'n_splits': 8,
+    'train': 'corpus.shuf.train.tok.bpe',
+    'use_adam': False,
+    'use_transformer': True,
+    'valid': 'corpus.shuf.valid.tok.bpe'}
+
+input_size:  58365
+output_size:  140364
+
+ Transformer(
+  (emb_enc): Embedding(58365, 32)
+  (emb_dec): Embedding(140364, 32)
+  (emb_dropout): Dropout(p=0.1, inplace=False)
+  (encoder): MySequential(
+    (0): EncoderBlock(
+      (attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (attn_dropout): Dropout(p=0.1, inplace=False)
+      (fc): Sequential(
+        (0): Linear(in_features=32, out_features=128, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=128, out_features=32, bias=True)
+      )
+      (fc_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (fc_dropout): Dropout(p=0.1, inplace=False)
+    )
+    (1): EncoderBlock(
+      (attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (attn_dropout): Dropout(p=0.1, inplace=False)
+      (fc): Sequential(
+        (0): Linear(in_features=32, out_features=128, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=128, out_features=32, bias=True)
+      )
+      (fc_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (fc_dropout): Dropout(p=0.1, inplace=False)
+    )
+    (2): EncoderBlock(
+      (attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (attn_dropout): Dropout(p=0.1, inplace=False)
+      (fc): Sequential(
+        (0): Linear(in_features=32, out_features=128, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=128, out_features=32, bias=True)
+      )
+      (fc_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (fc_dropout): Dropout(p=0.1, inplace=False)
+    )
+    (3): EncoderBlock(
+      (attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (attn_dropout): Dropout(p=0.1, inplace=False)
+      (fc): Sequential(
+        (0): Linear(in_features=32, out_features=128, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=128, out_features=32, bias=True)
+      )
+      (fc_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (fc_dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (decoder): MySequential(
+    (0): DecoderBlock(
+      (masked_attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (masked_attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (masked_attn_dropout): Dropout(p=0.1, inplace=False)
+      (attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (attn_dropout): Dropout(p=0.1, inplace=False)
+      (fc): Sequential(
+        (0): Linear(in_features=32, out_features=128, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=128, out_features=32, bias=True)
+      )
+      (fc_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (fc_dropout): Dropout(p=0.1, inplace=False)
+    )
+    (1): DecoderBlock(
+      (masked_attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (masked_attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (masked_attn_dropout): Dropout(p=0.1, inplace=False)
+      (attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (attn_dropout): Dropout(p=0.1, inplace=False)
+      (fc): Sequential(
+        (0): Linear(in_features=32, out_features=128, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=128, out_features=32, bias=True)
+      )
+      (fc_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (fc_dropout): Dropout(p=0.1, inplace=False)
+    )
+    (2): DecoderBlock(
+      (masked_attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (masked_attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (masked_attn_dropout): Dropout(p=0.1, inplace=False)
+      (attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (attn_dropout): Dropout(p=0.1, inplace=False)
+      (fc): Sequential(
+        (0): Linear(in_features=32, out_features=128, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=128, out_features=32, bias=True)
+      )
+      (fc_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (fc_dropout): Dropout(p=0.1, inplace=False)
+    )
+    (3): DecoderBlock(
+      (masked_attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (masked_attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (masked_attn_dropout): Dropout(p=0.1, inplace=False)
+      (attn): MultiHead(
+        (Q_linear): Linear(in_features=32, out_features=32, bias=False)
+        (K_linear): Linear(in_features=32, out_features=32, bias=False)
+        (V_linear): Linear(in_features=32, out_features=32, bias=False)
+        (linear): Linear(in_features=32, out_features=32, bias=False)
+        (attn): Attention(
+          (softmax): Softmax(dim=-1)
+        )
+      )
+      (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (attn_dropout): Dropout(p=0.1, inplace=False)
+      (fc): Sequential(
+        (0): Linear(in_features=32, out_features=128, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=128, out_features=32, bias=True)
+      )
+      (fc_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (fc_dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (generator): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=140364, bias=True)
+    (2): LogSoftmax(dim=-1)
+  )
+)
+
+ Loss function: Negative Log-Likelihood with log-probability (NLLLoss)
+
+Using device number: 0
+Optimizer: Adam
+Start training...
+ Epoch  |  Train Loss  | Train Acc  | Val Loss | Val Acc | Elapsed
+--------------------------------------------------------------------------------
+   1    |   6.279912   | 33.822227  | 4.027343 | 35.86  | 33.71 
+   2    |   4.430733   | 48.916903  | 3.989146 | 37.05  | 33.47 
+   3    |   4.367341   | 49.319645  | 3.987525 | 36.61  | 33.75 
+   4    |   4.375712   | 49.016534  | 4.152825 | 35.42  | 33.58 
+   5    |   4.372607   | 48.614897  | 4.051139 | 36.61  | 33.56 
+   6    |   4.369561   | 48.451550  | 4.059638 | 37.05  | 33.57 
+   7    |   4.362405   | 47.809398  | 4.124298 | 35.86  | 33.60 
+   8    |   4.363018   | 47.809370  | 4.047945 | 36.01  | 33.70 
+   9    |   4.334454   | 47.836376  | 4.102416 | 35.57  | 33.60 
+  10    |   4.332180   | 47.915975  | 4.239331 | 34.97  | 33.75 
+  11    |   4.317165   | 47.663668  | 4.051597 | 37.05  | 33.68 
+  12    |   4.280831   | 47.889726  | 4.155308 | 36.76  | 33.59 
+  13    |   4.278386   | 47.886730  | 4.181247 | 36.16  | 33.62 
+  14    |   4.274058   | 48.078292  | 4.129647 | 34.38  | 33.57 
+  15    |   4.286362   | 47.730565  | 4.139507 | 35.57  | 33.65 
+  16    |   4.315763   | 47.798799  | 4.049659 | 36.31  | 33.50 
+  17    |   4.296943   | 48.199390  | 4.069747 | 36.61  | 33.58 
+  18    |   4.278957   | 48.261902  | 4.290933 | 34.23  | 33.62 
+  19    |   4.262083   | 48.205661  | 4.149179 | 34.82  | 33.62 
+  20    |   4.273133   | 48.535981  | 4.086574 | 36.76  | 33.56 
+  21    |   4.264592   | 48.524347  | 4.147001 | 36.01  | 33.60 
+  22    |   4.301277   | 48.268916  | 4.119939 | 35.71  | 33.61 
+  23    |   4.308591   | 48.463830  | 4.053735 | 36.61  | 33.57 
+  24    |   4.299374   | 48.158670  | 3.986537 | 36.46  | 33.58 
+  25    |   4.300183   | 48.428993  | 4.151868 | 36.90  | 33.53 
+  26    |   4.315994   | 48.238608  | 3.970273 | 36.76  | 33.50 
+  27    |   4.257664   | 48.736744  | 3.940170 | 36.46  | 33.59 
+  28    |   4.252491   | 48.574313  | 3.923894 | 37.20  | 33.65 
+  29    |   4.274035   | 48.475856  | 3.997008 | 35.71  | 33.61 
+  30    |   4.263773   | 48.573456  | 4.076634 | 36.90  | 33.57 
+  31    |   4.248997   | 48.844667  | 4.131433 | 36.76  | 33.56 
+  32    |   4.258254   | 48.923243  | 4.101487 | 37.05  | 33.66 
+  33    |   4.262388   | 49.300322  | 4.092746 | 38.24  | 33.67 
+  34    |   4.267521   | 49.224166  | 4.048093 | 37.20  | 33.44 
+  35    |   4.315276   | 48.804888  | 4.117735 | 37.95  | 33.40 
+  36    |   4.293606   | 48.930364  | 4.102809 | 35.86  | 33.57 
+  37    |   4.315798   | 48.519748  | 3.907771 | 38.10  | 33.53 
+  38    |   4.308501   | 49.071108  | 3.985152 | 39.14  | 33.54 
+  39    |   4.323059   | 49.004240  | 4.277106 | 36.76  | 33.53 
+  40    |   4.284529   | 49.392565  | 4.322491 | 37.20  | 33.57 
+  41    |   4.276198   | 49.171379  | 4.180685 | 37.05  | 33.67 
+  42    |   4.246261   | 49.913559  | 4.206722 | 35.12  | 33.51 
+  43    |   4.314805   | 49.749596  | 3.934660 | 38.84  | 33.56 
+  44    |   4.357469   | 49.159463  | 3.961407 | 38.84  | 33.70 
+  45    |   4.375187   | 49.403584  | 4.100008 | 36.46  | 33.60 
+  46    |   4.341850   | 49.506074  | 3.841320 | 37.95  | 33.67 
+  47    |   4.318439   | 49.394102  | 4.007501 | 36.46  | 33.63 
+  48    |   4.338635   | 49.429805  | 3.646904 | 38.10  | 33.58 
+  49    |   4.254185   | 49.360467  | 3.906663 | 38.24  | 33.49 
+  50    |   4.234620   | 49.275438  | 4.015278 | 36.76  | 33.61 
+
+
+Training complete! Best accuracy: 39.14%.
+total taken time:  27.993086212800698
