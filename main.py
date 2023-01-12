@@ -33,6 +33,12 @@ def define_argparser():
     )
 
 	p.add_argument(
+        '--test',
+        required=True,
+        help='Test set file name except the extention. (ex: test.en --> test)',
+    )
+
+	p.add_argument(
         '--lang',
         required=True,
         help='Set of extention represents language pair. (ex: en + ko --> enko)',
@@ -176,6 +182,7 @@ def main(config, model_weight=None, opt_weight=None):
 	loader = DataLoader(
         config.train,                           # Train file name except extention, which is language.
         config.valid,                           # Validation file name except extension.
+		config.test,
         (config.lang[:2], config.lang[-2:]),    # Source and target language.
         batch_size=config.batch_size,
         device=-1,                              # Lazy loading
