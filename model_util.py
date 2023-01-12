@@ -23,10 +23,10 @@ def saveModel(fn, project_nm, model):
     # os.makedirs('../model/'+fn+'/'+project_nm+'/')
 
     model.cpu()
-    torch.save(model, '../saved_model/'+fn+'/'+project_nm+'.pt')
+    torch.save(model, './saved_model/'+fn+'/'+project_nm+'.pt')
 
 
 def getModel(fn, project_nm):
-    model = torch.load('../saved_model/'+fn+'/'+project_nm+'.pt')
+    model = torch.load('./saved_model/'+fn+'/'+project_nm+'.pt')
 
-    return 
+    return model
